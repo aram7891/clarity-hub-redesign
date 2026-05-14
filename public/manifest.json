@@ -1,0 +1,21 @@
+{
+  "name": "Clarity Hub | Andres Ramirez",
+  "short_name": "Clarity Hub",
+  "description": "Clarity Systems for High-Agency People. A curated ecosystem for thought, protocols, and intellectual growth.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0F1113",
+  "theme_color": "#0F1113",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "type": "image/svg+xml",
+      "sizes": "any"
+    },
+    {
+      "src": "/apple-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}
