@@ -2,13 +2,24 @@
 
 import { useState } from 'react'
 import { cn } from '@/lib/utils'
+import { useLanguage } from '@/lib/language-context'
 import { LiveIndicator } from './live-indicator'
+import { LanguageSwitcher } from './language-switcher'
 
 export function Hero() {
   const [isEntering, setIsEntering] = useState(false)
+  const { t } = useLanguage()
 
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-center px-6 py-20">
+      {/* Language switcher - top right */}
+      <div 
+        className="absolute top-6 right-6 opacity-0 animate-fade-in z-20"
+        style={{ animationDelay: '0.1s', animationFillMode: 'forwards' }}
+      >
+        <LanguageSwitcher />
+      </div>
+
       {/* Subtle background texture */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background to-background" />
       
@@ -27,7 +38,7 @@ export function Hero() {
           className="font-serif text-lg md:text-xl tracking-[0.3em] text-muted-foreground uppercase mb-8 opacity-0 animate-fade-in"
           style={{ animationDelay: '0.2s', animationFillMode: 'forwards' }}
         >
-          Andres Ramirez
+          {t.hero.brand}
         </h1>
 
         {/* Main headline */}
@@ -35,8 +46,8 @@ export function Hero() {
           className="font-serif text-4xl md:text-6xl lg:text-7xl leading-[1.1] tracking-tight text-foreground mb-8 opacity-0 animate-fade-in text-balance"
           style={{ animationDelay: '0.4s', animationFillMode: 'forwards' }}
         >
-          Clarity Systems for <br className="hidden md:block" />
-          <span className="text-accent">High-Agency</span> People
+          {t.hero.headline} <br className="hidden md:block" />
+          <span className="text-accent">{t.hero.headlineAccent}</span> {t.hero.headlineSuffix}
         </h2>
 
         {/* Subtitle */}
@@ -44,7 +55,7 @@ export function Hero() {
           className="font-sans text-base md:text-lg text-muted-foreground leading-relaxed max-w-md mb-12 opacity-0 animate-fade-in"
           style={{ animationDelay: '0.6s', animationFillMode: 'forwards' }}
         >
-          Protocols, essays, and systems for cultivating clarity in a noisy world.
+          {t.hero.subtitle}
         </p>
 
         {/* Enter button */}
@@ -62,6 +73,7 @@ export function Hero() {
             'transition-all duration-500 ease-out',
             'hover:border-accent/50 hover:bg-secondary/50',
             'opacity-0 animate-fade-in',
+            'min-h-[48px]', // Touch target
             isEntering && 'scale-95 opacity-50'
           )}
           style={{ animationDelay: '0.8s', animationFillMode: 'forwards' }}
@@ -71,7 +83,7 @@ export function Hero() {
           
           <span className="relative z-10 flex items-center gap-3">
             <span className="text-foreground group-hover:text-accent transition-colors duration-300">
-              Enter the Hub
+              {t.hero.cta}
             </span>
             <svg 
               className="w-4 h-4 text-muted-foreground group-hover:text-accent group-hover:translate-y-0.5 transition-all duration-300" 
@@ -92,19 +104,19 @@ export function Hero() {
         style={{ animationDelay: '1s', animationFillMode: 'forwards' }}
       >
         <LiveIndicator 
-          label="Latest Essay" 
-          value="Emotional Arbitrage" 
+          label={t.live.latestEssay} 
+          value={t.live.essay} 
           href="#essays"
           isNew 
         />
         <LiveIndicator 
-          label="New Podcast" 
-          value="Cognitive Liquidity" 
-          href="#audio"
+          label={t.live.bookLabel} 
+          value={t.live.book} 
+          href="#books"
         />
         <LiveIndicator 
-          label="Protocol" 
-          value="Self Love Club" 
+          label={t.live.protocolLabel} 
+          value={t.live.protocol} 
           href="#protocol"
           isNew
         />
