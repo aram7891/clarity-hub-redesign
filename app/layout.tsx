@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next'
 import { Cormorant_Garamond, Instrument_Sans } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
+import { LanguageProvider } from '@/lib/language-context'
 
 const cormorant = Cormorant_Garamond({
   subsets: ['latin'],
@@ -51,7 +52,9 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${cormorant.variable} ${instrumentSans.variable} bg-background`}>
       <body className="font-sans antialiased min-h-screen">
-        {children}
+        <LanguageProvider>
+          {children}
+        </LanguageProvider>
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
     </html>
